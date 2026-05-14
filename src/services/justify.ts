@@ -38,7 +38,7 @@ export function justify(text: string): string {
     return lines.map((line, index) => {
 
             /* last line doesn't need to be justified */
-            const isLastLine = index === lines.length -1;
+            const isLastLine = index === lines.length - 1;
             if (isLastLine) return line;
             return justifyLine(line, lineWidth);
         }).join("\n");
@@ -60,8 +60,7 @@ function justifyLine(line: string, width: number): string {
 
     return words.reduce((result, word, i) => {
         if (i === 0) return word;
-            
-        const spaces = spacePerGap + (i <= extraSpaces ? 1 :0 );
+        const spaces = spacePerGap + (i - 1 < extraSpaces ? 1 : 0);
         return result + " ".repeat(spaces) + word;
     }, "")
     
