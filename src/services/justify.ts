@@ -9,6 +9,18 @@ export function justify(text: string): string {
     let currentLength = 0;
 
     for (const word of words) {
+
+        /* If a single word exceeds line width, force it onto its own line */
+        if(word.length > lineWidth) {
+            if (currentLine.length > 0) {
+                lines.push(currentLine.join(" "));
+                currentLine = [];
+                currentLength = 0;
+            }
+            lines.push(word);
+            continue;
+        }
+
         const spaceNeeded = currentLine.length > 0 ? 1 : 0;
         if (currentLength + spaceNeeded + word.length > lineWidth) {
             lines.push(currentLine.join(" "));
